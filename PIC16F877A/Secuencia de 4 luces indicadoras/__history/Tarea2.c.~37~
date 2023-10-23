@@ -1,0 +1,34 @@
+#include <16f877a.h> //indica el microcontrolador a usar
+#fuses xt,nowdt //tiene un reloj externo
+#use delay (clock=4MHZ) //el reloj va atrabajar con 8MHZ
+
+void main()
+{
+   //variables
+   int x, cont=1;
+   
+   //configuración del microcontrolador
+      //configuracion de los puertos a, b, c y d como salidas en formato binario
+      set_tris_a(0b00000000);
+      set_tris_b(0b00000000);
+      set_tris_c(0b00000000);
+      set_tris_d(0b00000000);
+      
+   //programa o proceso
+   while(true)
+   {
+      //cont=1;
+      for(x=2; x<=3; x++)
+      {
+         output_b(cont);
+         delay_ms(500);cont=cont*2;
+         output_c(cont);
+         delay_ms(500);cont=cont*2;
+         output_d(cont);
+         delay_ms(500);cont=cont*2;
+         output_a(cont);
+         delay_ms(500);
+         cont=cont*2;
+      }
+   } 
+}

@@ -1,0 +1,188 @@
+CCS PCM C Compiler, Version 5.015, 5967               06-ene.-23 18:12
+
+               Filename:   C:\Users\USUARIO\Documents\Microcontroladores\Tarea2\Tarea2.lst
+
+               ROM used:   121 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   6 (2%) at main() level
+                           7 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #include <16f877a.h> //indica el microcontrolador a usar 
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+....................  
+.................... #list 
+....................  
+.................... #fuses xt,nowdt //tiene un reloj externo 
+.................... #use delay (clock=20MHZ) //el reloj va atrabajar con 8MHZ 
+0004:  MOVLW  21
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  06
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  7B
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+....................  
+.................... void main() 
+0018:  MOVF   03,W
+0019:  ANDLW  1F
+001A:  MOVWF  03
+001B:  MOVLW  FF
+001C:  MOVWF  20
+001D:  BSF    03.5
+001E:  BSF    1F.0
+001F:  BSF    1F.1
+0020:  BSF    1F.2
+0021:  BCF    1F.3
+0022:  MOVLW  07
+0023:  MOVWF  1C
+0024:  BCF    03.7
+.................... { 
+....................    //variables 
+....................     
+....................    //configuración del microcontrolador 
+....................       //configuracion de los puertos a, b, c y d como salidas en formato binario 
+....................        
+....................        
+....................       set_tris_d(0b00000000); 
+0025:  MOVLW  00
+0026:  MOVWF  08
+....................       set_tris_c(0b00000000); 
+0027:  MOVWF  07
+0028:  BCF    03.5
+0029:  MOVWF  20
+....................       output_d(0X00); 
+002A:  BSF    03.5
+002B:  CLRF   08
+002C:  BCF    03.5
+002D:  CLRF   08
+....................       output_c(0X00); 
+002E:  MOVWF  20
+002F:  BSF    03.5
+0030:  CLRF   07
+0031:  BCF    03.5
+0032:  CLRF   07
+....................        
+....................    //programa o proceso 
+....................    while(true) 
+....................    { 
+....................          output_d(0X80); 
+0033:  BSF    03.5
+0034:  CLRF   08
+0035:  MOVLW  80
+0036:  BCF    03.5
+0037:  MOVWF  08
+....................          delay_ms(50); 
+0038:  MOVLW  32
+0039:  MOVWF  21
+003A:  CALL   004
+....................          output_d(0X00); 
+003B:  BSF    03.5
+003C:  CLRF   08
+003D:  BCF    03.5
+003E:  CLRF   08
+....................          delay_ms(50); 
+003F:  MOVLW  32
+0040:  MOVWF  21
+0041:  CALL   004
+....................          output_d(0X10); 
+0042:  BSF    03.5
+0043:  CLRF   08
+0044:  MOVLW  10
+0045:  BCF    03.5
+0046:  MOVWF  08
+....................          delay_ms(50); 
+0047:  MOVLW  32
+0048:  MOVWF  21
+0049:  CALL   004
+....................          output_d(0X00); 
+004A:  BSF    03.5
+004B:  CLRF   08
+004C:  BCF    03.5
+004D:  CLRF   08
+....................          delay_ms(50); 
+004E:  MOVLW  32
+004F:  MOVWF  21
+0050:  CALL   004
+....................          output_c(0X80); 
+0051:  MOVLW  00
+0052:  MOVWF  20
+0053:  BSF    03.5
+0054:  CLRF   07
+0055:  MOVLW  80
+0056:  BCF    03.5
+0057:  MOVWF  07
+....................          delay_ms(50); 
+0058:  MOVLW  32
+0059:  MOVWF  21
+005A:  CALL   004
+....................          output_c(0X00); 
+005B:  MOVLW  00
+005C:  MOVWF  20
+005D:  BSF    03.5
+005E:  CLRF   07
+005F:  BCF    03.5
+0060:  CLRF   07
+....................          delay_ms(50); 
+0061:  MOVLW  32
+0062:  MOVWF  21
+0063:  CALL   004
+....................          output_c(0X20); 
+0064:  MOVLW  00
+0065:  MOVWF  20
+0066:  BSF    03.5
+0067:  CLRF   07
+0068:  MOVLW  20
+0069:  BCF    03.5
+006A:  MOVWF  07
+....................          delay_ms(50); 
+006B:  MOVLW  32
+006C:  MOVWF  21
+006D:  CALL   004
+....................          output_c(0X00); 
+006E:  MOVLW  00
+006F:  MOVWF  20
+0070:  BSF    03.5
+0071:  CLRF   07
+0072:  BCF    03.5
+0073:  CLRF   07
+....................          delay_ms(50); 
+0074:  MOVLW  32
+0075:  MOVWF  21
+0076:  CALL   004
+0077:  GOTO   033
+....................    }  
+.................... } 
+0078:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F71   XT NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT
